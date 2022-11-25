@@ -1,0 +1,27 @@
+lift-service:
+  generator:
+    capacity: 120
+    max-waiters: 240
+    max-new-waiters: 32
+    max-waiters-leaving: 3
+    max-people-getting-off-at-once: 4
+    max-people-getting-on-at-once: 6
+    percentage-of-starting-waiters: 60
+  schedules:
+    add-waiters-in-millis: 30000
+    update-state-in-millis: 10000
+  messaging:
+    lift-id: lift_1
+    state-queue-name: q.states
+    connection-queue-name: q.connections
+    state-change-ack-queue-name: q.statechangeack
+    disconnection-queue-name: q.disconnections
+    state-routing-prefix: lifts.states.
+    connection-routing-prefix: lifts.connections.
+    command-routing-prefix: lifts.commands.
+    state-change-ack-prefix: lifts.commands.ack.
+    command-exchange-name: lifts.commands.direct-exchange
+spring:
+  rabbitmq:
+    username: user
+    password: password

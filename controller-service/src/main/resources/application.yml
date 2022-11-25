@@ -1,0 +1,17 @@
+controller-service:
+  messaging:
+    state-queue-name: q.states
+    connection-queue-name: q.connections
+    state-change-ack-queue-name: q.statechangeack
+    disconnection-queue-name: q.disconnections
+    state-routing-prefix: lifts.states.
+    connection-routing-prefix: lifts.connections.
+    command-routing-prefix: lifts.commands.
+    state-change-ack-prefix: lifts.commands.ack.
+    command-exchange-name: lifts.commands.direct-exchange
+  schedules:
+    reports-missed: 1000
+spring:
+  rabbitmq:
+    username: user
+    password: password
