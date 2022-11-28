@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>hu.bme.aut.controllerservice</groupId>
-    <artifactId>controllerservice</artifactId>
+    <artifactId>control-rservice</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>control-service</name>
     <description>controller service for ski resort</description>

@@ -1,27 +1,85 @@
 package hu.bme.aut.controller;
 
-import org.springframework.security.access.prepost.PreAuthorize;
+import hu.bme.aut.model.User;
+import hu.bme.aut.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
-@RestController
+@Controller
+@Transactional
 public class HomeController {
 
-    @GetMapping
+    @Autowired
+    private UserRepository userRepository;
+
+    @GetMapping("/home")
     public String home() {
-        return "Hello, World!";
+        return "home";
     }
 
-    @PreAuthorize("hasRole('USER')")
     @GetMapping("/user")
     public String user() {
-        return "Hello, User!";
+        return "user";
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/admin")
-    public String admin() {
-        return "Hello, Admin!";
+    public String showAdmin(Model model) {
+        model.addAttribute("users", userRepository.findAll());
+        return "admin";
     }
 
+    @GetMapping("/login")
+    public String getMyLogin() {
+        return "login";
+    }
+
+    @GetMapping("/loginError")
+    public String getLoginError() {
+        return "loginError";
+    }
+
+
+    @GetMapping("/admin/delete/{id}")
+    public String deleteUserById(@PathVariable("id") Long id) {
+        userRepository.deleteById(id);
+        return "redirect:/admin";
+    }
+
+    @GetMapping("/admin/createUser")
+    public String createUser(Model model) {
+        User user = new User();
+        model.addAttribute("user",user);
+        return "createUser";
+    }
+
+    @PostMapping("/admin/createUser")
+    public String createUserSubmit(User user) {
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        User newUser = new User(user.getUsername(), encoder.encode(user.getPassword()), user.getRoles());
+        userRepository.save(newUser);
+        return "redirect:/admin";
+    }
+
+
+    @GetMapping("admin/edit/{id}")
+    public String datasheet(Model model, @PathVariable Long id){
+        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Can not find user"));
+        model.addAttribute("user",user);
+        return "edit";
+    }
+
+    @PostMapping("admin/edit/{id}")
+    public String datasheetSubmit(User editedUser, @PathVariable Long id){
+        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Can not find user"));
+        user.setUsername(editedUser.getUsername());
+        user.setRoles(editedUser.getRoles());
+        return "redirect:/admin";
+    }
 }
