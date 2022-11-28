@@ -41,13 +41,13 @@
             <td><span th:text="${liftData.liftConnectionResult()}"> LiftConnectionResult </span></td>
             <td><span th:text="${liftData.liftStateResult()}"> LiftStateResult </span></td>
             <td>
-                <a th:href="@{'/user/edit/start' + ${liftData.liftId()}}" class="btn btn-primary">Start</a>
+                <a th:href="@{'/user/edit/start/' + ${liftData.liftId()}}" class="btn btn-primary">Start</a>
             </td>
             <td>
-                <a th:href="@{'/user/edit/stop' + ${liftData.liftId()}}" class="btn btn-primary">Stop</a>
+                <a th:href="@{'/user/edit/stop/' + ${liftData.liftId()}}" class="btn btn-primary">Stop</a>
             </td>
             <td>
-                <a th:href="@{'/user/edit/pause' + ${liftData.liftId()}}" class="btn btn-primary">Pause</a>
+                <a th:href="@{'/user/edit/pause/' + ${liftData.liftId()}}" class="btn btn-primary">Pause</a>
             </td>
         </tr>
     </div>
