@@ -1,6 +1,6 @@
-package com.example.security.repository;
+package hu.bme.aut.controllerservice.security.repository;
 
-import com.example.security.entity.User;
+import hu.bme.aut.controllerservice.security.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

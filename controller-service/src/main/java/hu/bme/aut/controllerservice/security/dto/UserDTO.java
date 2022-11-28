@@ -1,6 +1,6 @@
-package com.example.security.dto;
+package hu.bme.aut.controllerservice.security.dto;
 
-import com.example.security.entity.Role;
+import hu.bme.aut.controllerservice.security.entity.Role;
 import lombok.Data;
 
 import java.util.HashSet;

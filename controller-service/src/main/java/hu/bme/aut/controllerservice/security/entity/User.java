@@ -1,4 +1,4 @@
-package com.example.security.entity;
+package hu.bme.aut.controllerservice.security.entity;
 
 import lombok.Getter;
 

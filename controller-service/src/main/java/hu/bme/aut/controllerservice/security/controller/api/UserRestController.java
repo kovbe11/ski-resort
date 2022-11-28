@@ -1,7 +1,9 @@
-package com.example.security.controller.api;
+package hu.bme.aut.controllerservice.security.controller.api;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RestController
 public class UserRestController {
 

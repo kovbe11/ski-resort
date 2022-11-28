@@ -1,4 +1,4 @@
-package com.example.security;
+package hu.bme.aut.controllerservice.security;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

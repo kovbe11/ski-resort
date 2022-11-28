@@ -1,7 +1,7 @@
-package com.example.security.service;
+package hu.bme.aut.controllerservice.security.service;
 
-import com.example.security.entity.Role;
-import com.example.security.entity.User;
+import hu.bme.aut.controllerservice.security.entity.Role;
+import hu.bme.aut.controllerservice.security.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

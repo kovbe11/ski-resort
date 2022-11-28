@@ -1,6 +1,6 @@
-package com.example.security;
+package hu.bme.aut.controllerservice.security;
 
-import com.example.security.service.UserDetailsServiceImpl;
+import hu.bme.aut.controllerservice.security.service.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

@@ -1,7 +1,7 @@
-package com.example.security.service;
+package hu.bme.aut.controllerservice.security.service;
 
-import com.example.security.entity.User;
-import com.example.security.repository.UserRepository;
+import hu.bme.aut.controllerservice.security.entity.User;
+import hu.bme.aut.controllerservice.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
