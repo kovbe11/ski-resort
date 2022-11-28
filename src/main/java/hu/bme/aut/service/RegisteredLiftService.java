@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Stream;
@@ -35,7 +36,7 @@ public class RegisteredLiftService {
     }
 
     @Scheduled(fixedRate = 5, timeUnit = SECONDS)
-    public /*List<LiftDataResult>*/ void currentlyRegisteredLifts() {
+    public List<LiftDataResult> currentlyRegisteredLifts() {
         final var result = currentlyRegisteredLifts.entrySet().stream()
                 .map(it -> new LiftDataResult(it.getKey(),
                         mapToResult(it.getValue().liftConnectionMessage()),
@@ -43,6 +44,7 @@ public class RegisteredLiftService {
                 )
                 .toList();
         log.info("Currently registered lifts: {}", result);
+        return result;
     }
 
     public void liftConnected(LiftConnectionMessage liftConnectionMessage) {

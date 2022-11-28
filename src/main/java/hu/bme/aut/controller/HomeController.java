@@ -24,11 +24,6 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/user")
-    public String user() {
-        return "user";
-    }
-
     @GetMapping("/admin")
     public String showAdmin(Model model) {
         model.addAttribute("users", userRepository.findAll());
