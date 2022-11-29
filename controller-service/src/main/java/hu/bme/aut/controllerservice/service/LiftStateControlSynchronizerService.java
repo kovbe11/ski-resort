@@ -35,7 +35,16 @@ public class LiftStateControlSynchronizerService {
     public void completeAcknowledgement(StateChangeAckMessage message) {
         synchronized (currentlyPendingControlRequests) {
             Optional.ofNullable(currentlyPendingControlRequests.get(message.liftId()))
-                    .ifPresent(future -> future.complete(message.timestamp()));
+                    .ifPresent(future -> {
+                        future.complete(message.timestamp());
+                        currentlyPendingControlRequests.remove(message.liftId());
+                    });
+        }
+    }
+
+    public void timedOutRequest(String liftId) {
+        synchronized (currentlyPendingControlRequests) {
+            currentlyPendingControlRequests.remove(liftId);
         }
     }
 }

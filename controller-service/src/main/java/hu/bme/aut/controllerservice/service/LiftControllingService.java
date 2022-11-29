@@ -41,9 +41,10 @@ public class LiftControllingService {
         try {
             return future.get(1, TimeUnit.SECONDS);
         } catch (TimeoutException e) {
+            synchronizerService.timedOutRequest(liftId);
             throw new SendingCommandIsUnsuccessfulException(liftId, newState, TIMEOUT);
         } catch (ExecutionException | InterruptedException e) {
-            throw new RuntimeException(e); //TODO better exception?
+            throw new RuntimeException(e);
         }
     }
 
